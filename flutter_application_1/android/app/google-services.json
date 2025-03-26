@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "687024879843",
+    "project_id": "foodlist-demo",
+    "storage_bucket": "foodlist-demo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687024879843:android:cb04d6b356ce95b0ebedd6",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzYytXExCR8xFEdMPycTxJ67YCApBQ408"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
