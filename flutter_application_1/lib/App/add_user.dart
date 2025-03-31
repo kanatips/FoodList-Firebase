@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+
 class AddUserScreen extends StatefulWidget {
   final CollectionReference<Map<String, dynamic>> users;
   const AddUserScreen({super.key, required this.users});
@@ -11,21 +12,25 @@ class AddUserScreen extends StatefulWidget {
 
 class _AddUserScreenState extends State<AddUserScreen> {
   final nameController = TextEditingController();
-  final ageController = TextEditingController();
-  final emailController = TextEditingController();
+  final menuController = TextEditingController();
+  final imgController = TextEditingController();
+  final ingredientsController = TextEditingController();
 
   Future<void> addUser() async {
     final String name = nameController.text;
-    final String email = emailController.text;
-    final int? age = int.tryParse(ageController.text);
+    final String imgurl = imgController.text;
+    final String menuName = menuController.text;
+    final String ingredients = ingredientsController.text;
 
-    if (name.isNotEmpty && age != null && email.isNotEmpty) {
+    if (name.isNotEmpty && menuName.isNotEmpty && imgurl.isNotEmpty&&ingredients.isNotEmpty) {
       nameController.clear();
-      ageController.clear(); 
-      emailController.clear();
+      menuController.clear(); 
+      imgController.clear();
+      ingredientsController.clear();
 
+    
       // เพิ่มข้อมูล
-      await widget.users.add({'name': name, 'age': age, 'email': email});
+      await widget.users.add({'name': name, 'menu_name': menuName, 'image_url': imgurl,'ingredients':ingredients});
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('กรุณากรอกข้อมูลให้ครบถ้วน')),
@@ -42,26 +47,30 @@ class _AddUserScreenState extends State<AddUserScreen> {
         child: Column(
           children: [
             TextField(
-              maxLength: 20,
               controller: nameController,
               decoration: InputDecoration(labelText: 'ชื่อ'),
             ),
             TextField(
-              maxLength: 2,
-              controller: ageController,
-              decoration: InputDecoration(labelText: 'อายุ'),
+              
+              controller: menuController,
+              decoration: InputDecoration(labelText: 'เมนู'),
               keyboardType: TextInputType.number,
             ),
             TextField(
-              maxLength: 20,
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'อีเมล'),
+              
+              controller: imgController,
+              decoration: InputDecoration(labelText: 'รูปภาพ'),
               keyboardType: TextInputType.emailAddress,
             ),
             SizedBox(height: 20),
+            TextField(
+              controller: ingredientsController,
+              decoration: InputDecoration(labelText: 'ส่วนผสม'),
+              keyboardType: TextInputType.emailAddress,
+            ),
             ElevatedButton(
               onPressed: addUser,
-              child: Text('เพิ่มผู้ใช้'),
+              child: Text('เพิ่มเมนู'),
             ),
           ],
         ),
